@@ -1,6 +1,17 @@
 const { StatusCodes } = require('http-status-codes');
-const { createUserOrganizer, createUser } = require('../../../services/mongoose/users')
+const { createUserOrganizer, createUser, createUserOwner } = require('../../../services/mongoose/users')
 
+
+const createOwner = async (req, res, next) => {
+    try {
+        const data = await createUserOwner(req)
+        res.status(StatusCodes.CREATED).json({
+            data,
+        });
+    } catch (error) {
+        next(error)
+    }
+}
 
 const create = async (req, res, next) => {
     try {
@@ -29,6 +40,7 @@ const createAdmin = async (req, res, next) => {
 
 
 module.exports = {
+    createOwner,
     create,
     createAdmin,
 }

@@ -2,6 +2,18 @@ const Users = require('../../api/v1/users/model');
 const Organizers = require('../../api/v1/organizers/model');
 const { BadRequestError, NotFoundError } = require('../../errors/');
 
+const createUserOwner = async (req) => {
+    const { name, email, password, confirmPassword } = req.body;
+
+    if (password !== confirmPassword) throw new BadRequestError('password dan confirm password tidak cocok');
+
+    const createUser = await Users.create({ name, email, password, role:'owner' });
+    
+    delete createUser._doc.password;
+
+    return createUser;
+}
+
 const createUserOrganizer = async (req) => {
     const { organizer, name, email, password, confirmPassword, role } = req.body;
 
@@ -26,4 +38,4 @@ const createUser = async (req) => {
     return createUser;
 }
 
-module.exports = { createUserOrganizer, createUser }
+module.exports = { createUserOwner, createUserOrganizer, createUser }

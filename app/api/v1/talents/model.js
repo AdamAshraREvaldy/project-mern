@@ -17,6 +17,12 @@ let talentSchema = Schema(
             ref: 'Images',
             required: true,
         },
+        // cara relasi mongodb collection talent dengan organizer
+        organizer: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Organizer',
+            required: true,
+        }
     },
     { timestamps: true }
 );

@@ -13,9 +13,14 @@ const imagesRouter = require('./app/api/v1/images/router');
 const talentsRouter = require('./app/api/v1/talents/router');
 const eventsRouter = require('./app/api/v1/events/router');
 const organizersRouter = require('./app/api/v1/organizers/router');
+const ordersRouter = require('./app/api/v1/orders/router');
+const paymentsRouter = require('./app/api/v1/payments/router');
 const authCMSRouter = require('./app/api/v1/auth/router');
 
-const v1 = '/api/v1/cms';
+// router participants
+const participantsRouter = require('./app/api/v1/participants/router');
+
+const v1 = '/api/v1';
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -23,12 +28,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(v1, categoriesRouter);
-app.use(v1, imagesRouter);
-app.use(v1, talentsRouter);
-app.use(v1, eventsRouter);
-app.use(v1, organizersRouter);
-app.use(v1, authCMSRouter);
+app.use(`${v1}/cms`, categoriesRouter);
+app.use(`${v1}/cms`, imagesRouter);
+app.use(`${v1}/cms`, talentsRouter);
+app.use(`${v1}/cms`, eventsRouter);
+app.use(`${v1}/cms`, organizersRouter);
+app.use(`${v1}/cms`, ordersRouter);
+app.use(`${v1}/cms`, paymentsRouter);
+app.use(`${v1}/cms`, authCMSRouter);
+app.use(`${v1}`, participantsRouter);
 app.use('/', (req, res) => {
     res.status(200).json({
         message: 'Welcome to api semina'

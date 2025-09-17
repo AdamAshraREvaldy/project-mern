@@ -1,0 +1,52 @@
+{
+  "date": { "$date": "2025-09-13T08:20:00.000Z" },
+  "personalDetail": {
+    "firstName": "andi",
+    "lastName": "saputra",
+    "email": "andi.saputra@gmail.com",
+    "role": "developer"
+  },
+  "event": { "$oid": "68c01234abcd5678ef901234" },
+  "totalPay": 100000,
+  "totalOrderTicket": 2,
+  "orderItems": [
+    {
+      "ticketCategories": {
+        "type": "Falsh sale",
+        "price": 50000
+      },
+      "sumTicket": 2
+    }
+  ],
+  "participant": { "$oid": "68c04567abcd9012ef345678" },
+  "payment": { "$oid": "68c07890abcd1234ef567890" },
+  "historyEvent": {
+    "title": "Data Mining",
+    "date": { "$date": "2025-09-10T08:16:14.000Z" },
+    "about": "Most realtors and investors are using Social Media (Facebook and Google) ineffectively because they don't know what they're doing or to start. They spend hours and hours trying different things and getting nowhere. This makes them feel like giving up on marketing altogether.",
+    "tagline": "Start Your Design Career With Design Sprint",
+    "keyPoint": [
+      "Hours trying different things and getting nowhere makes them feel like giving up on marketing altogether."
+    ],
+    "venueName": "Lampung",
+    "statusEvent": "Published",
+    "tickets": [
+      {
+        "type": "PO",
+        "price": 100000,
+        "stock": 100,
+        "statusTicketCategories": false
+      },
+      {
+        "type": "Falsh sale",
+        "price": 50000,
+        "stock": 10,
+        "statusTicketCategories": false
+      }
+    ],
+    "image": { "$oid": "68c66ebe264aafb57e196a2e" },
+    "category": { "$oid": "68c55ba2e08ef1a4fd671d7e" },
+    "talent": { "$oid": "68c67065294cb63313be168d" },
+    "organizer": { "$oid": "68c1c2421139060552c86967" }
+  }
+}

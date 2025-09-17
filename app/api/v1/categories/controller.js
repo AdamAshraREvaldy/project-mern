@@ -6,11 +6,8 @@ const {
 
 
 const findCategory = async (req, res, next) => {
-    const organizer  = req.user.organizer;
-    console.log('req.user')
-    console.log(req.user)
     try {
-        const data = await getAllCategories(organizer);
+        const data = await getAllCategories(req);
         res.status(StatusCodes.OK).json({ data, });
     } catch (error) {
         next(error)
@@ -18,10 +15,8 @@ const findCategory = async (req, res, next) => {
 }
 
 const index = async (req, res, next) => {
-    const { id } = req.params;
-    const organizer  = req.user.organizer
     try {
-        const data = await getOneCategory(id, organizer);
+        const data = await getOneCategory(req);
         res.status(StatusCodes.OK).json({ data, });
     } catch (error) {
         next(error)
@@ -29,10 +24,10 @@ const index = async (req, res, next) => {
 }
 
 const create = async (req, res, next) => {
-    const { name } = req.body;
+    // const { name } = req.body;
     try {
         // const createCatagory = await Categories.create({ name });
-        const data = await createCategory({ name, organizer: req.user.organizer });
+        const data = await createCategory(req);
         res.status(StatusCodes.CREATED).json({
             data,
         });
@@ -42,15 +37,8 @@ const create = async (req, res, next) => {
 }
 
 const update = async (req, res, next) => {
-    const { id } = req.params;
-    const { name } = req.body;
-    const organizer  = req.user.organizer
     try {
-        const update = await updateCategory(
-            organizer,
-            id,
-            { name },
-        )
+        const update = await updateCategory(req)
 
         res.status(StatusCodes.OK).json({ data: update })
     } catch (error) {
@@ -59,12 +47,12 @@ const update = async (req, res, next) => {
 }
 
 const destroy = async (req, res, next) => {
-    const { id } = req.params;
-    const organizer  = req.user.organizer
+    // const { id } = req.params;
+    // const organizer  = req.user.organizer
 
     try {
         // const data = await Categories.findByIdAndDelete(id);
-        const data = await deleteCategory(organizer, id);
+        const data = await deleteCategory(req);
 
         // if (!data) return res.status(400).json({ msg: 'Category not found' });
 

@@ -26,11 +26,20 @@ const userSchema = new mongoose.Schema(
             enum: ['admin', 'organizer', 'owner'],
             default: 'admin',
         },
+        // organizer: {
+        //     type: mongoose.Types.ObjectId,
+        //     ref: 'Organizer',
+        //     required: true,
+        // },
         organizer: {
             type: mongoose.Types.ObjectId,
             ref: 'Organizer',
-            required: true,
+            required: function () {
+                return this.role === 'organizer' || this.role === 'admin';
+            },
+            default: null,
         }
+
     },
     { timestamps: true }
 );

@@ -51,7 +51,7 @@ const EventSchema = new mongoose.Schema(
         },
         statusEvent: {
             type: String,
-            enum: ['Draft', 'Publisher'],
+            enum: ['Draft', 'Published'],
             default: 'Draft',
         },
         tickets: {
@@ -73,6 +73,11 @@ const EventSchema = new mongoose.Schema(
             ref: 'Talent',
             required: true,
         },
+        organizer: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Organizer',
+            required: true,
+        }
     },
     { timestamps: true }
 );

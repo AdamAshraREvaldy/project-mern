@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invoice - Your Brand</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f7fc;
+      }
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        border-bottom: 2px solid #f1f1f1;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .header h1 {
+        font-size: 2em;
+        color: #00466a;
+        margin: 0;
+      }
+      .details {
+        font-size: 1.1em;
+        margin-bottom: 20px;
+      }
+      .details p {
+        margin: 5px 0;
+      }
+      .section-title {
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #00466a;
+        margin-bottom: 10px;
+      }
+      .order-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+      }
+      .order-table th,
+      .order-table td {
+        padding: 12px 15px;
+        border: 1px solid #e0e0e0;
+        text-align: left;
+      }
+      .order-table th {
+        background-color: #00466a;
+        color: white;
+      }
+      .order-table td {
+        background-color: #fafafa;
+      }
+      .order-table tfoot {
+        font-weight: bold;
+      }
+      .footer {
+        text-align: center;
+        font-size: 0.9em;
+        color: #888;
+        border-top: 2px solid #f1f1f1;
+        padding-top: 20px;
+        margin-top: 20px;
+      }
+      .footer p {
+        margin: 5px 0;
+      }
+      .highlight {
+        color: #00466a;
+      }
+      .total {
+        font-size: 1.4em;
+        color: #00466a;
+        font-weight: bold;
+      }
+      .btn {
+        display: inline-block;
+        background-color: #00466a;
+        color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+      .btn:hover {
+        background-color: #003354;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Invoice</h1>
+        <p>
+          Thank you for your order with
+          <span class="highlight">Your Brand</span>!
+        </p>
+      </div>
+
+      <div class="details">
+        <p><strong>Order Date:</strong> {{date}}</p>
+        <p><strong>Event:</strong> {{historyEvent.title}}</p>
+        <p>
+          <strong>Participant:</strong> {{personalDetail.firstName}}
+          {{personalDetail.lastName}}
+        </p>
+        <p><strong>Email:</strong> {{personalDetail.email}}</p>
+      </div>
+
+      <div class="section-title">Order Details</div>
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>Ticket Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#orderItems}}
+          <tr>
+            <td>{{ticketCategories.type}}</td>
+            <td>{{sumTicket}}</td>
+            <td>{{ticketCategories.price}}</td>
+          </tr>
+          {{/orderItems}}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2" style="text-align: right;">Total Order:</td>
+            <td>{{totalOrderTicket}}</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align: right;">Total Pay:</td>
+            <td>{{totalPay}}</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <p class="total">Total: {{totalPay}}</p>
+
+      <a href="#" class="btn">View Your Order</a>
+
+      <div class="footer">
+        <p><strong>Your Brand Inc</strong></p>
+        <p>Address: 312312 BWA</p>
+        <p>For any inquiries, please contact us at support@yourbrand.com</p>
+      </div>
+    </div>
+  </body>
+</html>

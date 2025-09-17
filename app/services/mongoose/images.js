@@ -1,8 +1,12 @@
 const Images = require('../../api/v1/images/model');
 const { BadRequestError, NotFoundError } = require('../../errors/');
 
-const createImage = async ({ urlImage }) => {
-    const result = await Images.create({ urlImage });
+const createImage = async (req) => {
+    const urlImage = req.file 
+    ? `uploads/${req.file.filename}`
+    : 'uploads/avatar/default.jpeg';
+    const organizer = req.user.organizer;
+    const result = await Images.create({ urlImage, organizer });
 
     return result;
 }

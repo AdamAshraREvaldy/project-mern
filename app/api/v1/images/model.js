@@ -6,6 +6,11 @@ let imageSchema = Schema(
         urlImage: {
             type: String,
         },
+        organizer: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Organizer',
+            required: true,
+        }
     },
     { timestamps: true }
 );

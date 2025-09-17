@@ -1,16 +1,12 @@
 const { StatusCodes } = require('http-status-codes');
 const { 
-    getAllEvents,
-    getOneEvent,
-    createEvent,
-    updateEvent,
-    updateStatusEvent,
-    deleteEvent,
-} = require('../../../services/mongoose/events')
+    getAllPayments, getOnePayment, createPayment, 
+    updatePayment, deletePayment } 
+= require('../../../services/mongoose/payments');
 
 const find = async (req, res, next) => {
     try {
-        const data = await getAllEvents(req);
+        const data = await getAllPayments(req);
         res.status(StatusCodes.OK).json({ data, });
     } catch (error) {
         next(error)
@@ -19,7 +15,7 @@ const find = async (req, res, next) => {
 
 const index = async (req, res, next) => {
     try {
-        const data = await getOneEvent(req);
+        const data = await getOnePayment(req);
         res.status(StatusCodes.OK).json({ data, });
     } catch (error) {
         next(error)
@@ -27,8 +23,9 @@ const index = async (req, res, next) => {
 }
 
 const create = async (req, res, next) => {
+
     try {
-        const data = await createEvent(req)
+        const data = await createPayment(req);
         res.status(StatusCodes.CREATED).json({
             data,
         });
@@ -39,17 +36,7 @@ const create = async (req, res, next) => {
 
 const update = async (req, res, next) => {
     try {
-        const update = await updateEvent(req)
-
-        res.status(StatusCodes.OK).json({ data: update })
-    } catch (error) {
-        next(error);
-    }
-}
-
-const updateEventStatus = async (req, res, next) => {
-    try {
-        const update = await updateStatusEvent(req)
+        const update = await updatePayment(req)
 
         res.status(StatusCodes.OK).json({ data: update })
     } catch (error) {
@@ -59,13 +46,13 @@ const updateEventStatus = async (req, res, next) => {
 
 const destroy = async (req, res, next) => {
     try {
-        const data = await deleteEvent(req);
-        res.status(StatusCodes.OK).json({ message: 'Event deleted successfully', data })
+        const data = await deletePayment(req);
+
+        res.status(StatusCodes.OK).json({ message: 'Payment deleted successfully', data })
     } catch (error) {
         next(error)
     }
 }
-
 
 module.exports = {
     create,
@@ -73,5 +60,4 @@ module.exports = {
     index,
     update,
     destroy,
-    updateEventStatus,
 }
